@@ -1,8 +1,8 @@
 from engine import *
 from flask import Flask, jsonify, request
-
+from flask_cors import CORS
 app = Flask(__name__)
-
+CORS(app)
 @app.route('/get_decay_data', methods=['GET'])
 def get_decay_data():
     stock = request.args.get('stock')
