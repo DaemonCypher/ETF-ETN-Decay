@@ -1,30 +1,49 @@
 import React, { useState } from 'react';
 import './App.css';
+// Assuming you have a client-side capable API utility
+// import { fetchFinancialData } from './api'; 
 
 function App() {
   const [ticker, setTicker] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [apiResponse, setApiResponse] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setApiResponse(null); // Reset the response for each new request
+    setApiResponse(null); 
+    setLoading(true);
 
     try {
-      const response = await fetch(`http://localhost:5000/get_decay_data?stock=${ticker}&start_date=${startDate}&end_date=${endDate}`);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setApiResponse(data); // Update the state with the response data
+      // Replace this with your actual API call
+      // const data = await fetchFinancialData(ticker, startDate, endDate);
+      const data = await mockFetchFinancialData(ticker, startDate, endDate); // Mock function for demonstration
+      const processedData = processData(data); 
+      setApiResponse(processedData);
     } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
+      console.error('There was a problem fetching data:', error);
       setApiResponse({ error: 'Failed to fetch data' });
+    } finally {
+      setLoading(false);
     }
   };
+
+  // Mock function to simulate fetching financial data
+  async function mockFetchFinancialData(ticker, startDate, endDate) {
+    // Simulate network request
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ ticker, startDate, endDate, price: Math.random() * 100 });
+      }, 1000);
+    });
+  }
+
+  // Process the data as needed for your application
+  function processData(data) {
+    // Implement your data processing logic here
+    return data;
+  }
 
   return (
     <div className="App">
@@ -45,8 +64,9 @@ function App() {
             <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
           </label>
           <br />
-          <button type="submit">Submit</button>
+          <button type="submit" disabled={loading}>Submit</button>
         </form>
+        {loading && <p>Loading...</p>}
         {apiResponse && (
           <div className="response">
             <h2>API Response</h2>
