@@ -1,26 +1,62 @@
 
-TSL
-XDJA
-UGE
-UBR
-EVAV
-XDOC
-UPV
-SHNY
-KLNE
-SKYU
-CARU
-UCYB
-LTL
-NRGD
-BNKU
-FBGX
-MVV
-HIBL
-RXL
-RETL
-UTSL
-UYM
-SMHB
-FEDL
-QULL
+
+
+BDCX, 3, BDCX (Assuming BDCX as a ticker, no corresponding ETF)
+ESUS, 3, VOO (MSCI USA Index)
+FLYU, 3, JETS (U.S. Global Jets ETF)
+HDLB, 3, HDLB (Assuming HDLB as a ticker, no corresponding ETF)
+MTUL, 3, MTUM (MSCI USA Momentum Index)
+OOTO, 3, OOTO (Assuming OOTO as a ticker, no corresponding ETF)
+SCDL, 3, SCHA (Dow Jones U.S. Small-Cap Total Stock Market Index)
+USML, 3, IWM (Russell 2000 Index)
+EVAV, 3, EVAV (Assuming EVAV as a ticker, no corresponding ETF)
+
+
+
+
+INVERSE
+
+
+SOXS
+TBT
+QID
+KOLD
+SCO
+FAZ
+DUST
+DRV
+TECS
+DXD
+JDST
+DRIP
+SBND
+SRS
+EPV
+EUO
+REK
+OILD
+EDZ
+YCS
+PST
+ERY
+SKF
+DUG
+BZQ
+
+EEV
+SSG
+DZZ
+BIS
+WTID
+SMDD
+SDD
+SIJ
+MZZ
+RXD
+SZK
+SCC
+SMN
+SDP
+EFU
+
+
