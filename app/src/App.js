@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-// Assuming you have a client-side capable API utility
-// import { fetchFinancialData } from './api'; 
+
 
 function App() {
   const [ticker, setTicker] = useState('');
@@ -9,35 +8,32 @@ function App() {
   const [endDate, setEndDate] = useState('');
   const [apiResponse, setApiResponse] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     setApiResponse(null); 
     setLoading(true);
 
     try {
-      // Replace this with your actual API call
-      // const data = await fetchFinancialData(ticker, startDate, endDate);
-      const data = await mockFetchFinancialData(ticker, startDate, endDate); // Mock function for demonstration
-      const processedData = processData(data); 
-      setApiResponse(processedData);
+        const response = await fetch('http://localhost:3001/api/divergence', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ ticker, startDate, endDate }),
+        });
+        const data = await response.json();
+        const processedData = processData(data); 
+        setApiResponse(processedData);
     } catch (error) {
-      console.error('There was a problem fetching data:', error);
-      setApiResponse({ error: 'Failed to fetch data' });
+        console.error('There was a problem fetching data:', error);
+        setApiResponse({ error: 'Failed to fetch data' });
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
-  // Mock function to simulate fetching financial data
-  async function mockFetchFinancialData(ticker, startDate, endDate) {
-    // Simulate network request
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ ticker, startDate, endDate, price: Math.random() * 100 });
-      }, 1000);
-    });
-  }
+  
 
   // Process the data as needed for your application
   function processData(data) {
