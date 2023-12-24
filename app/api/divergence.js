@@ -1,9 +1,17 @@
-const fs = require('fs');
+// Import necessary modules. You might need to adjust these imports
+// depending on how you manage dependencies in a serverless environment.
 const yahooFinance = require('yahoo-finance2').default;
+const fs = require('fs'); // Note: Reading local files may not work as expected on Vercel.
+
+// Define your helper functions (search, getStockData, etc.) here.
+// These are the same functions used in your Express app.
 
 async function search(name) {
+    if (typeof name !== 'string' || !name) {
+        console.error('Invalid input to search function');
+        return null;
+    }
     const tickerToFind = name.trim().toUpperCase();
-
     try {
         const data = fs.readFileSync('etf.txt', 'utf8');
         const lines = data.split('\n');
@@ -21,7 +29,7 @@ async function search(name) {
                 } catch (error) {
                     asset = parts[2].trim();
                 }
-
+                
                 return { ticker, leverage, asset };
             }
         }
@@ -83,7 +91,9 @@ async function divergence(name, startDate, endDate, data) {
 }
 
 async function driver(stock, startDate, endDate) {
+    
     try {
+
         const data = await search(stock);
         if (data) {
             return await divergence(stock, startDate, endDate, data);
@@ -94,8 +104,23 @@ async function driver(stock, startDate, endDate) {
     }
 }
 
-// Example usage
-// (async () => {
-//     const decayData = await driver('FNGU', '2022-01-01', '2022-12-31');
-//     console.log(decayData);
-// })();
+// The serverless function handler
+module.exports = async (req, res) => {
+    try {
+        const { ticker, startDate, endDate } = req.body;
+
+        if (!ticker || !startDate || !endDate) {
+            return res.status(400).send('Missing required parameters');
+        }
+
+        const data = await driver(ticker, startDate, endDate);
+        if (data !== null) {
+            res.json(data);
+        } else {
+            res.status(404).send('Data not found');
+        }
+    } catch (error) {
+        console.error('Server Error:', error);
+        res.status(500).send('Server error');
+    }
+};

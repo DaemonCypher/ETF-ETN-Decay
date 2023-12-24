@@ -15,7 +15,7 @@ function App() {
     setLoading(true);
 
     try {
-        const response = await fetch('http://localhost:3001/api/divergence', {
+        const response = await fetch('/api/divergence', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
