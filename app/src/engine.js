@@ -95,7 +95,7 @@ async function driver(stock, startDate, endDate) {
 }
 
 // Example usage
- (async () => {
-     const decayData = await driver('FNGU', '2022-01-01', '2022-12-31');
-     console.log(decayData);
- })();
+// (async () => {
+//     const decayData = await driver('FNGU', '2022-01-01', '2022-12-31');
+//     console.log(decayData);
+// })();
