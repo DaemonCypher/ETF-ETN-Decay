@@ -1,5 +1,4 @@
-// Import necessary modules. You might need to adjust these imports
-// depending on how you manage dependencies in a serverless environment.
+
 const yahooFinance = require('yahoo-finance2').default;
 const etfs = [
     { ticker: 'TQQQ', leverage: 3, asset: 'QQQ' },
@@ -76,11 +75,56 @@ const etfs = [
     { ticker: 'UPW', leverage: 2, asset: 'XLU' },
     { ticker: 'UXI', leverage: 2, asset: 'XLI' },
     { ticker: 'XPP', leverage: 2, asset: 'FXI' },
-    { ticker: 'BNKU', leverage: 3, asset: 'KBE' }
+    { ticker: 'BNKU', leverage: 3, asset: 'KBE' },
+    { ticker: 'FBGX', leverage: 2, asset: 'IWF' },
+    { ticker: 'HIBL', leverage: 3, asset: 'SPHB' },
+    { ticker: 'KLNE', leverage: 2, asset: 'ICLN' },
+    { ticker: 'LTL', leverage: 2, asset: 'XLC' },
+    // Inverse
+    { ticker: 'BIS', leverage: 2, asset: 'IBB' },
+    { ticker: 'BZQ', leverage: 2, asset: 'EWZ' },
+    { ticker: 'DRIP', leverage: 2, asset: 'XOP' },
+    { ticker: 'DRV', leverage: 3, asset: 'XLRE' },
+    { ticker: 'DUG', leverage: 2, asset: 'XLE' },
+    { ticker: 'DUST', leverage: 2, asset: 'GDX' },
+    { ticker: 'DXD', leverage: 2, asset: 'DIA' },
+    { ticker: 'EDZ', leverage: 3, asset: 'EEM' },
+    { ticker: 'EEV', leverage: 2, asset: 'EEM' },
+    { ticker: 'EFU', leverage: 2, asset: 'EFA' },
+    { ticker: 'EPV', leverage: 3, asset: 'VGK' },
+    { ticker: 'ERY', leverage: 3, asset: 'XLE' },
+    { ticker: 'EUO', leverage: 2, asset: 'FXE' },
+    { ticker: 'FAZ', leverage: 3, asset: 'XLF' },
+    { ticker: 'JDST', leverage: 3, asset: 'GDXJ' },
+    { ticker: 'KOLD', leverage: 3, asset: 'UNG' },
+    { ticker: 'MZZ', leverage: 3, asset: 'MDY' },
+    { ticker: 'QID', leverage: 3, asset: 'QQQ' },
+    { ticker: 'REK', leverage: 3, asset: 'IYR' },
+    { ticker: 'RXD', leverage: 3, asset: 'XLV' },
+    { ticker: 'SCC', leverage: 2, asset: 'XLY' },
+    { ticker: 'SDP', leverage: 2, asset: 'XLU' },
+    { ticker: 'SIJ', leverage: 2, asset: 'XLI' },
+    { ticker: 'SKF', leverage: 2, asset: 'XLF' },
+    { ticker: 'SMDD', leverage: 3, asset: 'MDY' },
+    { ticker: 'SMN', leverage: 2, asset: 'XLB' },
+    { ticker: 'SOXS', leverage: 3, asset: 'SOXX' },
+    { ticker: 'SRS', leverage: 2, asset: 'IYR' },
+    { ticker: 'SSG', leverage: 2, asset: 'SOXX' },
+    { ticker: 'SZK', leverage: 3, asset: 'XLP' },
+    { ticker: 'SQQQ', leverage: 3, asset: 'QQQ' },
+    { ticker: 'TBT', leverage: 2, asset: 'TLT' },
+    { ticker: 'TECS', leverage: 3, asset: 'XLK' },
+    { ticker: 'YCS', leverage: 2, asset: 'FXY' },
+    { ticker: 'GLL', leverage: 2, asset: 'GLD' },
+    { ticker: 'SPXS', leverage: 3, asset: 'SPY' },
+    { ticker: 'SPXU', leverage: 2, asset: 'SPY' },
+    { ticker: 'SRTY', leverage: 3, asset: 'IWM' },
+    { ticker: 'TTT', leverage: 3, asset: 'TLT' },
+    { ticker: 'TWM', leverage: 2, asset: 'IWM' },
+    { ticker: 'YANG', leverage: 3, asset: 'FXI' },
+    { ticker: 'ZSL', leverage: 2, asset: 'SLV' },
+    { ticker: 'LABD', leverage: 3, asset: 'XBI' },
 ];
-
-// Define your helper functions (search, getStockData, etc.) here.
-// These are the same functions used in your Express app.
 
 async function search(name) {
     if (typeof name !== 'string' || !name) {

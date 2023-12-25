@@ -1,7 +1,3 @@
-
-
-
-BDCX, 3, BDCX (Assuming BDCX as a ticker, no corresponding ETF)
 ESUS, 3, VOO (MSCI USA Index)
 FLYU, 3, JETS (U.S. Global Jets ETF)
 HDLB, 3, HDLB (Assuming HDLB as a ticker, no corresponding ETF)
@@ -10,53 +6,25 @@ OOTO, 3, OOTO (Assuming OOTO as a ticker, no corresponding ETF)
 SCDL, 3, SCHA (Dow Jones U.S. Small-Cap Total Stock Market Index)
 USML, 3, IWM (Russell 2000 Index)
 EVAV, 3, EVAV (Assuming EVAV as a ticker, no corresponding ETF)
-
-
-
-
-INVERSE
-
-
-SOXS
-TBT
-QID
-KOLD
-SCO
-FAZ
-DUST
-DRV
-TECS
-DXD
-JDST
-DRIP
-SBND
-SRS
-EPV
-EUO
-REK
-OILD
-EDZ
-YCS
-PST
-ERY
-SKF
-DUG
-BZQ
-
-EEV
-SSG
-DZZ
-BIS
-WTID
-SMDD
-SDD
-SIJ
-MZZ
-RXD
-SZK
-SCC
-SMN
-SDP
-EFU
-
-
+FEDL, 3, FEDL (Assuming FEDL as a ticker, no corresponding ETF)
+MVV, 2, IWM (Russell 2000 Index)
+NRGD, 3, NRGD (Assuming NRGD as a ticker, no corresponding ETF)
+QULL, 3, QQQ (NASDAQ-100 Index)
+RETL, 3, XRT (S&P Retail Select Industry Index)
+RXL, 2, XLV (Health Care Select Sector Index)
+SHNY, 2, SLV (Silver)
+SKYU, 3, SKYU (Assuming SKYU as a ticker, no corresponding ETF)
+SMHB, 2, AMLP (Alerian MLP Index)
+TSL, 3, TSLA (Assuming TSL is a typo for TSLA, no corresponding ETF)
+UBR, 2, EWZ (MSCI Brazil Index)
+UCYB, 3, UCYB (Assuming UCYB as a ticker, no corresponding ETF)
+UGE, 2, XLY (Consumer Discretionary Select Sector Index)
+UPV, 2, VGK (FTSE Developed Europe Index)
+UTSL, 3, XLU (Utilities Select Sector Index)
+UYM, 2, XLB (Basic Materials Select Sector Index)
+DZZ, 2, GLD (Gold)
+OILD, 3, USO (Crude Oil)
+PST, 2, SHY (1-3 Year Treasury Bond)
+SBND, 3, TLT (20+ Year Treasury Bond)
+SCO, 2, USO (Crude Oil)
+SDD, 2, MDY (S&P MidCap 400)
