@@ -3,8 +3,11 @@
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  position: absolute; /* Absolute positioning relative to the header */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  width: 200px; /* Adjust the size as needed */
+  height: auto; /* Maintain aspect ratio */
 }
 
 @media (prefers-reduced-motion: no-preference) {

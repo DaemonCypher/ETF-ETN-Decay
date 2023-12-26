@@ -27,23 +27,20 @@ function App() {
         setApiResponse(processedData);
     } catch (error) {
         console.error('There was a problem fetching data:', error);
-        setApiResponse({ error: 'Failed to fetch data' });
+    setApiResponse({ error: `Failed to fetch data: ${error.message}` });
     } finally {
         setLoading(false);
     }
 };
-
-  
-
   // Process the data as needed for your application
   function processData(data) {
     // Implement your data processing logic here
     return data;
   }
-
   return (
     <div className="App">
       <header className="App-header">
+      <img src="/logo.png" alt="logo" className="App-logo" />
         <form onSubmit={handleSubmit}>
           <label>
             Ticker Symbol:
