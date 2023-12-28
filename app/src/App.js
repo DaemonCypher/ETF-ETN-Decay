@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-
+import etfs from './etfs'; // Importing the ETFs array
 
 function App() {
   const [ticker, setTicker] = useState('');
@@ -23,8 +23,8 @@ function App() {
             body: JSON.stringify({ ticker, startDate, endDate }),
         });
         const data = await response.json();
-        const processedData = processData(data); 
-        setApiResponse(processedData);
+
+        setApiResponse(data);
     } catch (error) {
         console.error('There was a problem fetching data:', error);
     setApiResponse({ error: `Failed to fetch data: ${error.message}` });
@@ -32,15 +32,14 @@ function App() {
         setLoading(false);
     }
 };
-  // Process the data as needed for your application
-  function processData(data) {
-    // Implement your data processing logic here
-    return data;
-  }
+
   return (
     <div className="App">
-      <header className="App-header">
+    <header className="App-header">  
+
       <img src="/logo.png" alt="logo" className="App-logo" />
+      <h1 className="App-title">ETF Divergence Analysis</h1> {/* Add a title */}
+      
         <form onSubmit={handleSubmit}>
           <label>
             Ticker Symbol:
@@ -62,11 +61,28 @@ function App() {
         {loading && <p>Loading...</p>}
         {apiResponse && (
           <div className="response">
-            <h2>API Response</h2>
-            <pre>{JSON.stringify(apiResponse, null, 2)}</pre>
+            <h2>Result</h2>
+            <pre>
+              {JSON.stringify(apiResponse, null, 2)}
+              
+            </pre>
+
           </div>
         )}
-      </header>
+      <div className="etf-list">
+        <h2>ETF List</h2>
+        <ul>
+          {etfs.map((etf, index) => (
+            <li key={index}>
+              {`Ticker: ${etf.ticker}, Leverage: ${etf.leverage}, Asset: ${
+                typeof etf.asset === 'object' ? JSON.stringify(etf.asset) : etf.asset
+              }`}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </header>
+   
     </div>
   );
 }

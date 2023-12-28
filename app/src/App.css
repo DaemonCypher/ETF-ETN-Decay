@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  background-image: url('https://github.com/DaemonCypher/ETF-ETN-Decay/blob/main/app/public/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
 }
 
 .App-logo {
