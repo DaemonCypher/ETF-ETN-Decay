@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import etfs from './etfs'; // Importing the ETFs array
+import { Line } from 'react-chartjs-2';
 
 function App() {
   const [ticker, setTicker] = useState('');
@@ -8,7 +9,11 @@ function App() {
   const [endDate, setEndDate] = useState('');
   const [apiResponse, setApiResponse] = useState(null);
   const [loading, setLoading] = useState(false);
-  
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showEtfs, setShowEtfs] = useState(false); // New state
+  const filteredEtfs = etfs.filter(etf =>
+    etf.ticker.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   const handleSubmit = async (event) => {
     event.preventDefault();
     setApiResponse(null); 
@@ -32,6 +37,27 @@ function App() {
         setLoading(false);
     }
 };
+let chart = null; // Initialize a variable to hold your chart component
+
+if (apiResponse && apiResponse.etfData && apiResponse.assetData) {
+  const etfChartData = {
+    labels: apiResponse.etfData.map((_, index) => index),
+    datasets: [{
+      label: 'ETF',
+      data: apiResponse.etfData,
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 1
+    },
+    {
+      label: 'Underlying Asset',
+      data: apiResponse.assetData.map(asset => asset.data), // assuming simple structure
+      borderColor: 'rgba(54, 162, 235, 1)',
+      borderWidth: 1
+    }]
+  };
+
+  chart = <Line data={etfChartData} />; // Create the chart component
+}
 
   return (
     <div className="App">
@@ -64,23 +90,37 @@ function App() {
             <h2>Result</h2>
             <pre>
               {JSON.stringify(apiResponse, null, 2)}
-              
+              {chart} 
             </pre>
 
           </div>
         )}
-      <div className="etf-list">
-        <h2>ETF List</h2>
-        <ul>
-          {etfs.map((etf, index) => (
-            <li key={index}>
-              {`Ticker: ${etf.ticker}, Leverage: ${etf.leverage}, Asset: ${
-                typeof etf.asset === 'object' ? JSON.stringify(etf.asset) : etf.asset
-              }`}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search ETFs by ticker..."
+            value={searchTerm}
+            onChange={e => {
+              setSearchTerm(e.target.value);
+              setShowEtfs(false);
+            }}
+          />
+          <button onClick={() => searchTerm && setShowEtfs(true)}>Search ETFs</button>
+        </div>
+        {showEtfs && searchTerm && (
+          <div className="etf-list-container">
+            <h2>ETF List</h2>
+              <ul className="etf-list">
+                {filteredEtfs.map((etf, index) => (
+                  <li key={index}>
+                    {`Ticker: ${etf.ticker}, Leverage: ${etf.leverage}, Asset: ${
+                      typeof etf.asset === 'object' ? JSON.stringify(etf.asset) : etf.asset
+                    }`}
+                  </li>
+                ))}
+              </ul>
+        </div>
+        )}
     </header>
    
     </div>
