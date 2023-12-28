@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 import etfs from './etfs'; // Importing the ETFs array
-import { Line } from 'react-chartjs-2';
 
 function App() {
   const [ticker, setTicker] = useState('');
@@ -37,27 +36,6 @@ function App() {
         setLoading(false);
     }
 };
-let chart = null; // Initialize a variable to hold your chart component
-
-if (apiResponse && apiResponse.etfData && apiResponse.assetData) {
-  const etfChartData = {
-    labels: apiResponse.etfData.map((_, index) => index),
-    datasets: [{
-      label: 'ETF',
-      data: apiResponse.etfData,
-      borderColor: 'rgba(255, 99, 132, 1)',
-      borderWidth: 1
-    },
-    {
-      label: 'Underlying Asset',
-      data: apiResponse.assetData.map(asset => asset.data), // assuming simple structure
-      borderColor: 'rgba(54, 162, 235, 1)',
-      borderWidth: 1
-    }]
-  };
-
-  chart = <Line data={etfChartData} />; // Create the chart component
-}
 
   return (
     <div className="App">
@@ -90,12 +68,8 @@ if (apiResponse && apiResponse.etfData && apiResponse.assetData) {
             <h2>Result</h2>
             <pre>
               {JSON.stringify(apiResponse, null, 2)}
+              
             </pre>
-            {chart && (
-            <div className="chart-container">
-              {chart}
-            </div>
-          )}
 
           </div>
         )}

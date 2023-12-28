@@ -70,23 +70,7 @@ async function divergence(name, startDate, endDate, data) {
     }
 
     const leverage = data.leverage;
-    const etfData = await getStockData(name, startDate, endDate);
-    let assetData = [];
-
-    if (typeof data.asset === 'object') {
-        for (const stock of Object.keys(data.asset)) {
-            const stockData = await getStockData(stock, startDate, endDate);
-            assetData.push({ stock, data: stockData });
-        }
-    } else {
-        assetData = await getStockData(data.asset, startDate, endDate);
-    }
-
-    return {
-        divergence: Math.abs(etf) - Math.abs(leverage * asset),
-        etfData,
-        assetData
-    };
+    return Math.abs(etf) - Math.abs(leverage * asset);
 }
 
 async function driver(stock, startDate, endDate) {
