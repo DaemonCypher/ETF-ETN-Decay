@@ -90,8 +90,12 @@ if (apiResponse && apiResponse.etfData && apiResponse.assetData) {
             <h2>Result</h2>
             <pre>
               {JSON.stringify(apiResponse, null, 2)}
-              {chart} 
             </pre>
+            {chart && (
+            <div className="chart-container">
+              {chart}
+            </div>
+          )}
 
           </div>
         )}
