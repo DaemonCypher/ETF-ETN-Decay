@@ -1,4 +1,4 @@
-import etfs from '../etfs'; // Importing the ETFs array
+import etfs from '../src/etfs';
 
 const yahooFinance = require('yahoo-finance2').default;
 
