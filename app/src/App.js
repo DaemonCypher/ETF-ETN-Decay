@@ -68,8 +68,12 @@ function App() {
             <h2>Result</h2>
             <pre>
               {JSON.stringify(apiResponse, null, 2)}
-              
             </pre>
+            <p>
+              A negative value means the underlying out perform the leveraged asset.
+              A postive value greater than 0 means the leveraged outperformed the underlying asset.
+              The resulting value is a percentage of divergence.
+            </p>
 
           </div>
         )}
