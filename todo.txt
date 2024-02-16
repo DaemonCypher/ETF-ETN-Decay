@@ -6,3 +6,5 @@ create a fucntion with given parmaters of
 function will return
     the data needed to (maybe create a chart showing the diveregence of price)
     diveregence and the math behind it
+asjust the code logic for caluating the deacy
+    add compound intrest calculation instead of ((start date - end date) intrest) - (underlying asset intrest)
