@@ -52,6 +52,18 @@ async function underlying(name, startDate, endDate, weight) {
 }
 
 async function divergence(name, startDate, endDate, data) {
+    // using seeking alpha etf decay formula
+    // “Lev” is the leveraging factor. 
+    // “Return” is the total return of an ETF (including dividends). 
+    // “IndexReturn” is the total return of the underlying index, measured on a non-leveraged ETF (also with dividends). 
+    // “ETFdrift” is the drift of the ETF relative to the leveraged index. 
+    // “TradeDrift” is the drift relative to an equivalent position in the non-leveraged index. 
+    // ETFdrift and TradeDrift are calculated as follows, where Abs is the absolute value operator.
+
+    // ETFdrift = Return - (IndexReturn x Lev)
+
+    // TradeDrift = ETFdrift / Abs(Lev)
+
     let asset = 0;
     let etf = await underlying(name, startDate, endDate, 1);
     if (etf === -401) return -401;
@@ -70,7 +82,8 @@ async function divergence(name, startDate, endDate, data) {
     }
 
     const leverage = data.leverage;
-    return Math.abs(etf) - Math.abs(leverage * asset);
+            // Return - (IndexReturn x Lev) // leverage
+    return (Math.abs(etf) - Math.abs(leverage * asset))/ Math.abs(leverage);
 }
 
 async function driver(stock, startDate, endDate) {
